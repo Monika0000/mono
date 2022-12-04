@@ -1174,7 +1174,12 @@ init_table_no_lock (void)
 		// Load functions available on Win8/Win2012Server or later. If running on earlier
 		// systems the below GetProceAddress will fail, this is expected behavior.
 		HMODULE ntdll;
+
+#ifdef UNICODE
 		if (GetModuleHandleEx (0, L"ntdll.dll", &ntdll)) {
+#else
+        if (GetModuleHandleEx (0, "ntdll.dll", &ntdll)) {
+#endif
 			g_rtl_add_growable_function_table = (RtlAddGrowableFunctionTablePtr)GetProcAddress (ntdll, "RtlAddGrowableFunctionTable");
 			g_rtl_grow_function_table = (RtlGrowFunctionTablePtr)GetProcAddress (ntdll, "RtlGrowFunctionTable");
 			g_rtl_delete_growable_function_table = (RtlDeleteGrowableFunctionTablePtr)GetProcAddress (ntdll, "RtlDeleteGrowableFunctionTable");
@@ -1183,7 +1188,11 @@ init_table_no_lock (void)
 		// Fallback on systems not having RtlAddGrowableFunctionTable.
 		if (g_rtl_add_growable_function_table == NULL) {
 			HMODULE kernel32dll;
+#ifdef UNICODE
 			if (GetModuleHandleEx (0, L"kernel32.dll", &kernel32dll)) {
+#else
+            if (GetModuleHandleEx (0, "kernel32.dll", &kernel32dll)) {
+#endif
 				g_rtl_install_function_table_callback = (RtlInstallFunctionTableCallbackPtr)GetProcAddress (kernel32dll, "RtlInstallFunctionTableCallback");
 				g_rtl_delete_function_table = (RtlDeleteFunctionTablePtr)GetProcAddress (kernel32dll, "RtlDeleteFunctionTable");
 			}
