@@ -11,6 +11,8 @@
 #pragma warning(disable:4090) // const problem
 #pragma warning(  error:4098) // void return returns a value
 #pragma warning(disable:4101) // unreferenced local variable
+#pragma warning(disable:4133)
+#pragma warning(disable:4028)
 #pragma warning(  error:4113) // call and prototype disagree
 #pragma warning(disable:4146) // unary minus operator applied to unsigned type, result still unsigned
 #pragma warning(  error:4172) // returning address of local variable or temporary

@@ -100,27 +100,27 @@ typedef struct MonoAssemblyByNameRequest {
 	/* FIXME: predicate unused? */
 } MonoAssemblyByNameRequest;
 
-void                   mono_assembly_request_prepare_load (MonoAssemblyLoadRequest *req,
+MONO_API void                   mono_assembly_request_prepare_load (MonoAssemblyLoadRequest *req,
 							   MonoAssemblyContextKind asmctx,
 							   MonoAssemblyLoadContext *alc);
 
-void                   mono_assembly_request_prepare_open (MonoAssemblyOpenRequest *req,
+MONO_API void                   mono_assembly_request_prepare_open (MonoAssemblyOpenRequest *req,
 							   MonoAssemblyContextKind asmctx,
 							   MonoAssemblyLoadContext *alc);
 
-void                   mono_assembly_request_prepare_byname (MonoAssemblyByNameRequest *req,
+MONO_API void                   mono_assembly_request_prepare_byname (MonoAssemblyByNameRequest *req,
 							     MonoAssemblyContextKind asmctx,
 							     MonoAssemblyLoadContext *alc);
 
-MonoAssembly*          mono_assembly_request_open (const char *filename,
+MONO_API MonoAssembly*          mono_assembly_request_open (const char *filename,
 						     const MonoAssemblyOpenRequest *req,
 						     MonoImageOpenStatus *status);
 
-MonoAssembly*          mono_assembly_request_load_from (MonoImage *image, const char *fname,
+MONO_API MonoAssembly*          mono_assembly_request_load_from (MonoImage *image, const char *fname,
 							const MonoAssemblyLoadRequest *req,
 							MonoImageOpenStatus *status);
 
-MonoAssembly*          mono_assembly_request_byname (MonoAssemblyName *aname,
+MONO_API MonoAssembly*          mono_assembly_request_byname (MonoAssemblyName *aname,
 						     const MonoAssemblyByNameRequest *req,
 						     MonoImageOpenStatus *status);
 
